@@ -1,69 +1,38 @@
-# Svelte tutorial
+# sv
 
-To start the project, run the following commands:
+Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
+## Creating a project
 
-```bash
-npm create svelte@latest .
-```
-
-When prompted, select the following:
-
-- Create the project in the current directory
-- Choose continue
-- Choose Skeleton project
-- Use TypeScript
-- Choose the default options for the rest of the questions
-
-After the project is created, we will set up the project to use Tailwind CSS.
+If you're seeing this, you've probably already done this step. Congrats!
 
 ```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-`
+# create a new project in the current directory
+npx sv create
 
-In `svite.config.js`, add the following:
-
-```js
-import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-  kit: {
-    adapter: adapter()
-  },
-  preprocess: vitePreprocess()
-};
-export default config;
+# create a new project in my-app
+npx sv create my-app
 ```
 
-In `tailwind.config.js`, add the following:
+## Developing
 
-```js
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-  theme: {
-    extend: {}
-  },
-  plugins: []
-};
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+
+```bash
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
 ```
 
-Create a `./src/app.css` file and add the following:
+## Building
 
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+To create a production version of your app:
+
+```bash
+npm run build
 ```
 
-Create a `./src/routes/+layout.svelte` file and add the following:
+You can preview the production build with `npm run preview`.
 
-```html
-<script>
-  import '../app.css';
-</script>
-
-<slot />
-```
+> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
